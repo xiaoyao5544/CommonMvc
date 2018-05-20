@@ -1,2 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.common.mvc.commonlibrary"/>
+          package="com.common.mvc.commonlibrary">
+
+    <!--读取手机状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <application>
+        <activity android:name=".CommonActivity">
+        </activity>
+    </application>
+
+</manifest>

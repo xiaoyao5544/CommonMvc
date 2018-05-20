@@ -4,6 +4,9 @@ package com.common.mvc.x;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @author gitxi
+ */
 public class TextActivity extends AppCompatActivity {
 
     @Override
