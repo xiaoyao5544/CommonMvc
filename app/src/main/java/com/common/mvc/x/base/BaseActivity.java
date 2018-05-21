@@ -1,6 +1,8 @@
 package com.common.mvc.x.base;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,12 +16,15 @@ import android.view.View;
 @SuppressLint("Registered")
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //横竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         beforeSetContentView();
         super.onCreate(savedInstanceState);
+        context = this;
         onContentView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //禁止自动填充
@@ -40,6 +45,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 子类复写view
      */
     protected abstract void onContentView();
+
+    public void starActivity(Class activity) {
+        Intent intent = new Intent(context, activity);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onStart() {
