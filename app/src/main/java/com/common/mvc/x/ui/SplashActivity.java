@@ -17,6 +17,7 @@ public class SplashActivity extends BaseContentActivity {
 
     @Override
     protected void initView() {
+        setToolbarGone();
         setContentView(R.layout.activity_splash);
     }
 
