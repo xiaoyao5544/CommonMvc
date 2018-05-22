@@ -1,4 +1,4 @@
-package com.common.mvc.x.network;
+package com.common.mvc.x.network.mqtt;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
