@@ -1,7 +1,5 @@
 package com.common.mvc.commonlibrary.utils;
 
-import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.io.ByteArrayInputStream;
@@ -10,65 +8,62 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import studio.jss.jinshisong.app.JssApp;
-
 
 /**
- *
  * @author xiao
  * @date 2017/10/20
  */
 
-public class SharedPreferencesUtil {
+public abstract class BaseSharedPreferences {
 
     private static final String APP_NAME = "MyApp";
 
 
-    public static String getString(String key) {
+    public String getString(String key) {
         return getSharedPreferences().getString(key, "");
     }
 
-    public static String getString(String key, String defValue) {
+    public String getString(String key, String defValue) {
         return getSharedPreferences().getString(key, defValue);
     }
 
-    public static void setString(String key, String value) {
+    public void setString(String key, String value) {
         getSharedPreferences().edit().putString(key, value).apply();
     }
 
-    public static boolean getBoolean(String key) {
+    public boolean getBoolean(String key) {
         return getSharedPreferences().getBoolean(key, false);
     }
 
-    public static void setBoolean(String key, boolean value) {
+    public void setBoolean(String key, boolean value) {
         getSharedPreferences().edit().putBoolean(key, value).apply();
     }
 
-    public static int getInt(String key) {
+    public int getInt(String key) {
         return getSharedPreferences().getInt(key, 0);
     }
 
-    public static int getInt(String key, int value) {
+    public int getInt(String key, int value) {
         return getSharedPreferences().getInt(key, value);
     }
 
-    public static void setInt(String key, int value) {
+    public void setInt(String key, int value) {
         getSharedPreferences().edit().putInt(key, value).apply();
     }
 
-    public static long getLong(String key) {
+    public long getLong(String key) {
         return getSharedPreferences().getLong(key, 0);
     }
 
-    public static void setLong(String key, long value) {
+    public void setLong(String key, long value) {
         getSharedPreferences().edit().putLong(key, value).apply();
     }
 
-    public static void remove(String key) {
+    public void remove(String key) {
         getSharedPreferences().edit().remove(key).apply();
     }
 
-    public static void clear() {
+    public void clear() {
         getSharedPreferences().edit().clear().apply();
     }
 
@@ -78,7 +73,7 @@ public class SharedPreferencesUtil {
      * @param key
      * @param object
      */
-    public static void setObject(String key, Object object) {
+    public void setObject(String key, Object object) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
@@ -108,7 +103,7 @@ public class SharedPreferencesUtil {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getObject(String key) {
+    public <T> T getObject(String key) {
         if (getSharedPreferences().contains(key)) {
             String objectVal = getSharedPreferences().getString(key, null);
             byte[] buffer = android.util.Base64.decode(objectVal, android.util.Base64.DEFAULT);
@@ -137,7 +132,7 @@ public class SharedPreferencesUtil {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getObject(String key , T defValue) {
+    public <T> T getObject(String key, T defValue) {
         if (getSharedPreferences().contains(key)) {
             String objectVal = getSharedPreferences().getString(key, null);
             byte[] buffer = android.util.Base64.decode(objectVal, android.util.Base64.DEFAULT);
@@ -165,8 +160,9 @@ public class SharedPreferencesUtil {
         return defValue;
     }
 
-    public static SharedPreferences getSharedPreferences() {
-        return Application.getInstant()
-                .getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
-    }
+    /**
+     * 重写该方法生成不同的文件
+     * @return
+     */
+    public abstract SharedPreferences getSharedPreferences();
 }
