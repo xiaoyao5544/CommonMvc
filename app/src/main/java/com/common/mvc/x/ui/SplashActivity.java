@@ -4,7 +4,7 @@ package com.common.mvc.x.ui;
 import android.os.CountDownTimer;
 
 import com.common.mvc.x.R;
-import com.common.mvc.x.base.BaseContentActivity;
+import com.common.mvc.x.base.activity.BaseContentActivity;
 import com.common.mvc.x.main.MainActivity;
 
 

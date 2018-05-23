@@ -4,23 +4,23 @@
     <item
         android:id="@+id/item_device"
         android:checked="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_menu_camera"
         android:title="设备" />
 
     <item
         android:id="@+id/item_room"
         android:checked="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_menu_gallery"
         android:title="房间" />
 
     <item
         android:id="@+id/item_scenes"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_menu_slideshow"
         android:title="场景" />
 
     <item
         android:id="@+id/item_mine"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_menu_manage"
         android:title="我的" />
 
 </menu>

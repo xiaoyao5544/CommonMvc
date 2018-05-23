@@ -8,7 +8,7 @@ import com.common.mvc.commonlibrary.utils.ViewUtil;
 import com.common.mvc.commonlibrary.views.NoScrollViewPager;
 import com.common.mvc.x.R;
 import com.common.mvc.x.adapter.MainViewpagerAdapter;
-import com.common.mvc.x.base.BaseContentActivity;
+import com.common.mvc.x.base.activity.BaseContentActivity;
 import com.common.mvc.x.main.fragment.DeviceFragment;
 import com.common.mvc.x.main.fragment.MineFragment;
 import com.common.mvc.x.main.fragment.RoomFragment;

@@ -56,6 +56,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
 
     /**
      * 布局填充前加载数据
+     * 注意：此方法会在creatview之前执行
      */
     protected abstract void loadData();
 

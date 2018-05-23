@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义view的小控件-->
+    <declare-styleable name="widgetView">
+        <attr name="title" format="string"/>
+        <attr name="leftIcon" format="reference"/>
+    </declare-styleable>
+</resources>

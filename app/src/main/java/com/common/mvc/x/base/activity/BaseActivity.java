@@ -1,4 +1,4 @@
-package com.common.mvc.x.base;
+package com.common.mvc.x.base.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.common.mvc.commonlibrary.utils.StatusBarUtil;
+import com.common.mvc.x.R;
+
 /**
  * @author gitxi
  */
@@ -20,11 +23,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //横竖屏
+        //禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         beforeSetContentView();
         super.onCreate(savedInstanceState);
         context = this;
+        setStatusBar();
         onContentView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //禁止自动填充
@@ -40,6 +44,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void beforeSetContentView() {
     }
 
+    /**
+     * 设置状态栏 可重写
+     */
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark));
+    }
 
     /**
      * 子类复写view

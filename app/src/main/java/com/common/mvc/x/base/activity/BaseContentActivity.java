@@ -1,4 +1,4 @@
-package com.common.mvc.x.base;
+package com.common.mvc.x.base.activity;
 
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.Snackbar;
@@ -16,6 +16,8 @@ public abstract class BaseContentActivity extends BaseActivity {
     private android.support.v7.widget.Toolbar toolbar;
     private android.widget.RelativeLayout container;
 
+    private View errorView;
+
     @Override
     protected void onContentView() {
         super.setContentView(R.layout.activity_content);
@@ -24,7 +26,9 @@ public abstract class BaseContentActivity extends BaseActivity {
         setToolbar();
         initView();
         initVariables();
+        loadDate();
     }
+
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
@@ -89,6 +93,12 @@ public abstract class BaseContentActivity extends BaseActivity {
      * 初始化变量
      */
     protected abstract void initVariables();
+
+    /**
+     * 加载数据
+     */
+    protected  void loadDate(){
+    }
 
     /**
      * showSnackbar

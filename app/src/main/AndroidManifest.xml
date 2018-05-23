@@ -10,10 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
 
-        <!-- 7.0以上存储路径私有-->
+        <!-- 7.0以上存储路径私有 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -22,22 +21,24 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"
-                tools:replace="android:resource"
-                />
+                tools:replace="android:resource"/>
         </provider>
 
         <activity android:name=".main.MainActivity">
-
         </activity>
         <activity
             android:name=".ui.SplashActivity"
-            android:theme="@style/AppTheme.FullScreen"
-            >
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".base.Main2Activity"
+            android:label="@string/title_activity_main2"
+            >
         </activity>
     </application>
 
