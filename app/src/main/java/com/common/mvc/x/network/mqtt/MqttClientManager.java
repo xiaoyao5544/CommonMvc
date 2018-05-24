@@ -1,5 +1,7 @@
 package com.common.mvc.x.network.mqtt;
 
+import com.common.mvc.x.MyApplication;
+import com.common.mvc.x.R;
 import com.orhanobut.logger.Logger;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -8,6 +10,18 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 
 /**
  * @author xiao
@@ -143,7 +157,21 @@ public class MqttClientManager {
         //setWill方法，如果项目中需要知道客户端是否掉线可以调用该方法。设置最终端口的通知消息
         //mqttOptions.setWill(topic, "close".getBytes(), 2, true);
 
-        //todo 配置安全证书
+        //配置安全证书
+        try {
+            KeyStore keyStore = KeyStore.getInstance("BKS");
+            keyStore.load(MyApplication.getInstant().getResources().openRawResource(R.raw.kclient_ztzh_mosquitto),MQTT_PASWORD.toCharArray());
+            TrustManagerFactory trustManagerFactory  =TrustManagerFactory.getInstance("X509");
+            trustManagerFactory.init(keyStore);
+            TrustManager[] managers = trustManagerFactory.getTrustManagers();
+
+            SSLContext sslContext = SSLContext.getInstance("TLSv1");
+            sslContext.init(null,managers,null);
+            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            mqttOptions.setSocketFactory(sslSocketFactory);
+        } catch (NoSuchAlgorithmException | KeyStoreException | IOException | CertificateException | KeyManagementException e) {
+            e.printStackTrace();
+        }
         return mqttOptions;
     }
 }

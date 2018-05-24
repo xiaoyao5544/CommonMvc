@@ -1,5 +1,7 @@
 package com.common.mvc.x.network.mqtt;
 
+import com.common.mvc.x.network.NetworkCallback;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -11,6 +13,14 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class MqttCallbackListener implements MqttCallback {
 
 
+    private NetworkCallback mCallback;
+
+    public MqttCallbackListener() {
+    }
+
+    public MqttCallbackListener(NetworkCallback callback) {
+        this.mCallback = callback;
+    }
 
     /**
      * 发送成功的回调

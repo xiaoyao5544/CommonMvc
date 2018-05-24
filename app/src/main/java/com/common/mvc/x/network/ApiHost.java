@@ -14,6 +14,8 @@ public class ApiHost {
         return SingletonHolder.INSTAANCE;
     }
 
+    public void sendRequest(AbstractHelper helper){
 
+    }
 
 }

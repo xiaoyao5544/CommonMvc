@@ -1,7 +1,8 @@
 package com.common.mvc.x.network.nettty;
 
-import com.common.mvc.x.base.BaseRequest;
 import com.common.mvc.x.model.BaseModel;
+import com.common.mvc.x.network.BaseResponse;
+import com.common.mvc.x.network.NetworkCallback;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,8 +11,16 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @author xiao
  * @date 2018/5/22
  */
-public class NettyClientHandler extends SimpleChannelInboundHandler<BaseRequest<BaseModel>> {
+public class NettyClientHandler extends SimpleChannelInboundHandler<BaseResponse<BaseModel>> {
 
+    private NetworkCallback mCallback;
+
+    public NettyClientHandler() {
+    }
+
+    public NettyClientHandler(NetworkCallback callback) {
+        this.mCallback = callback;
+    }
 
     /**
      * 连接建立准备通信时调用
@@ -32,7 +41,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<BaseRequest<
      * @throws Exception
      */
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, BaseRequest<BaseModel> msg) throws Exception {
+    protected void messageReceived(ChannelHandlerContext ctx, BaseResponse msg) throws Exception {
 
     }
 
