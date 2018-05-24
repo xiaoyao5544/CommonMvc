@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.common.mvc.x.view.MainHeadView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    android:id="@+id/headView"
+    >
+
+</com.common.mvc.x.view.MainHeadView>

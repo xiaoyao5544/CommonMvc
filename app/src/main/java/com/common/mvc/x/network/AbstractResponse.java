@@ -6,4 +6,5 @@ package com.common.mvc.x.network;
  */
 public abstract class AbstractResponse implements NetworkCallback {
 
+
 }

@@ -26,6 +26,7 @@ public class MainActivity extends BaseContentActivity implements BottomNavigatio
 
     @Override
     protected void initView() {
+        setToolbarGone();
         setContentView(R.layout.activity_main);
         this.bottomNavigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         this.viewPager = (NoScrollViewPager) findViewById(R.id.viewPager);

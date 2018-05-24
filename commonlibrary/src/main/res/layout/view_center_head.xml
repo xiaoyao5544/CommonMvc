@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/appBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/appBar"
     >
 
     <android.support.v7.widget.Toolbar
@@ -13,10 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
         app:layout_collapseMode="pin"
-        app:navigationIcon="@android:drawable/ic_dialog_email"
+        app:layout_scrollFlags="enterAlways|scroll"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         >
 
         <TextView
@@ -26,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:singleLine="true"
+            android:textColor="@color/material_black"
             tools:text="Title"/>
 
     </android.support.v7.widget.Toolbar>

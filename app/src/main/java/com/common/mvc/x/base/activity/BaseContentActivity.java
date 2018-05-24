@@ -100,9 +100,9 @@ public abstract class BaseContentActivity extends BaseActivity {
     protected  void loadDate(){
     }
 
+
     /**
      * showSnackbar
-     *
      * @param msg
      */
     public void showSnackbar(CharSequence msg) {

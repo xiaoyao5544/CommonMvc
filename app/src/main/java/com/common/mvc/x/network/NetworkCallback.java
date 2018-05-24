@@ -14,6 +14,7 @@ public interface NetworkCallback {
      */
     void onSuccess();
 
+
     /**
      * 请求失败的回调
      */

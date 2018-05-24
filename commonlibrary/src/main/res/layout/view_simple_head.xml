@@ -10,10 +10,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:gravity="center_vertical"
         android:background="@color/colorPageBg"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/actionBarSize"
         app:layout_scrollFlags="enterAlways|scroll"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         />
 
 

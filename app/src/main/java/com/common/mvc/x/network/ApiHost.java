@@ -6,6 +6,13 @@ package com.common.mvc.x.network;
  */
 public class ApiHost {
 
+    private static class SingletonHolder {
+        private static final ApiHost INSTAANCE = new ApiHost();
+    }
+
+    public static ApiHost getInstance() {
+        return SingletonHolder.INSTAANCE;
+    }
 
 
 
