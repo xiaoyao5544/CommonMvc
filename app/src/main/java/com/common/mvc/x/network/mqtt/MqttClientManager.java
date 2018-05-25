@@ -8,7 +8,6 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.io.IOException;
@@ -103,8 +102,6 @@ public class MqttClientManager {
                 mMqttClient.publish(topic, message);
                 Logger.d("topic=" + topic + "--msg=" + msg + "--isRetained" + isRetained);
             }
-        } catch (MqttPersistenceException e) {
-            e.printStackTrace();
         } catch (MqttException e) {
             e.printStackTrace();
         }

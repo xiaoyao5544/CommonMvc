@@ -48,13 +48,15 @@ public abstract class BaseLoadActivity extends BaseContentActivity implements Sw
     }
 
     /**
-     *  必须给一个adapter
+     * 必须给一个adapter
+     *
      * @return
      */
     protected abstract BaseQuickAdapter getAdapter();
 
     /**
      * 默认水平布局,可重写更改
+     *
      * @return
      */
     protected RecyclerView.LayoutManager getLayoutManager() {
@@ -92,5 +94,29 @@ public abstract class BaseLoadActivity extends BaseContentActivity implements Sw
     @Override
     public void onRefresh() {
         loadDate();
+    }
+
+    @Override
+    public void showLoadingView() {
+        super.showLoadingView();
+        showSwipeRefresh();
+    }
+
+    @Override
+    public void showContentView() {
+        super.showContentView();
+        hideSwipeRefresh();
+    }
+
+    private void showSwipeRefresh() {
+        if (baseSwipe != null && !baseSwipe.isRefreshing()) {
+            baseSwipe.post(() -> baseSwipe.setRefreshing(true));
+        }
+    }
+
+    private void hideSwipeRefresh() {
+        if (baseSwipe != null) {
+            baseSwipe.post(() -> baseSwipe.setRefreshing(false));
+        }
     }
 }

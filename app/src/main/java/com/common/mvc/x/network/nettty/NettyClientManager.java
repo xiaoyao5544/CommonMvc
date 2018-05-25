@@ -2,6 +2,8 @@ package com.common.mvc.x.network.nettty;
 
 import com.common.mvc.x.model.BaseModel;
 
+import java.nio.ByteOrder;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -10,8 +12,11 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.handler.timeout.ReadTimeoutHandler;
+import io.netty.handler.timeout.WriteTimeoutHandler;
 import io.netty.util.CharsetUtil;
 
 /**
@@ -19,11 +24,14 @@ import io.netty.util.CharsetUtil;
  */
 public class NettyClientManager {
 
+    private static final int RECONNECTION = 60;
+
     private Channel channel;
 
     private Bootstrap bootstrap;
 
-    NioEventLoopGroup group;
+    private NioEventLoopGroup group;
+
 
     private static class SingletonHolder {
         private static final NettyClientManager INSTANCE = new NettyClientManager();
@@ -47,7 +55,10 @@ public class NettyClientManager {
             protected void initChannel(SocketChannel ch) throws Exception {
                 ChannelPipeline pipeline = ch.pipeline();
                 pipeline.addLast("encoder", new StringEncoder(CharsetUtil.UTF_8));
-                pipeline.addLast(new LineBasedFrameDecoder(Integer.MAX_VALUE));
+                pipeline.addLast(new LengthFieldBasedFrameDecoder(ByteOrder.LITTLE_ENDIAN, 1024 * 1024, 4, 4, 0, 0, false));
+                pipeline.addLast(new WriteTimeoutHandler(40));
+                pipeline.addLast(new ReadTimeoutHandler(40));
+                pipeline.addLast(new IdleStateHandler(RECONNECTION,RECONNECTION,0));
                 pipeline.addLast(new NettyClientHandler());
             }
         });

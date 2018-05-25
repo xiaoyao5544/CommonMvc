@@ -1,4 +1,4 @@
-package com.common.mvc.x.base;
+package com.common.mvc.x.network;
 
 /**
  * @author xiao
@@ -7,6 +7,7 @@ package com.common.mvc.x.base;
  */
 public class BaseRequest<T> {
 
+    
 
     private T data;
 
