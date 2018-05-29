@@ -2,7 +2,10 @@ package com.common.mvc.x.network.retrofit;
 
 import android.support.annotation.NonNull;
 
+import com.common.mvc.commonlibrary.rxjava.DefaultScheduler;
+import com.common.mvc.x.BuildConfig;
 import com.common.mvc.x.MyApplication;
+import com.common.mvc.x.model.BaseModel;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -31,8 +34,9 @@ public class RetrofitManager {
 
     private static final long DEFAULT_TIMEOUT = 30;
 
-    private static final String BASE_URL = "";
+    private static final String BASE_URL = "https://www.bjztzhsiot.com:6443";
 
+    private static final String DEBUG_BASE_URL = "http://123.57.68.237:8090";
     /**
      * 静态初始化器，由JVM来保证线程安全
      */
@@ -51,12 +55,22 @@ public class RetrofitManager {
 
     public void createRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(getBaseUrl())
                 .client(getOkHttpClient())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
+    }
+
+    private String getBaseUrl() {
+        String url;
+        if (BuildConfig.DEBUG){
+            url = DEBUG_BASE_URL;
+        }else {
+            url = BASE_URL;
+        }
+        return url+"/api/SIOT";
     }
 
     private OkHttpClient getOkHttpClient() {
@@ -86,5 +100,14 @@ public class RetrofitManager {
             }
         }
         return mOkHttpClient;
+    }
+
+    /**
+     * 进行网络请求的方法
+     */
+    public void  doHttp(AbstractHttpHelper<BaseModel> httpHelper){
+        httpHelper.onRequest(apiService)
+                .compose(new DefaultScheduler())
+                .subscribe(httpHelper.onResponse());
     }
 }

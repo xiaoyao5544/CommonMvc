@@ -2,6 +2,7 @@ package com.common.mvc.x.network.mqtt;
 
 import com.common.mvc.x.MyApplication;
 import com.common.mvc.x.R;
+import com.common.mvc.x.model.BaseModel;
 import com.orhanobut.logger.Logger;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -85,6 +86,13 @@ public class MqttClientManager {
     }
 
     /**
+     * 取消订阅
+     */
+    public void unSubscribeMsg(){
+      //  mMqttClient.unsubscribe();
+    }
+
+    /**
      * 发布消息
      *
      * @param topic      发布消息主题
@@ -106,6 +114,11 @@ public class MqttClientManager {
             e.printStackTrace();
         }
     }
+
+    public void sendMqttMessage(BaseModel model){
+
+    }
+
 
     /**
      * 判断是否连接

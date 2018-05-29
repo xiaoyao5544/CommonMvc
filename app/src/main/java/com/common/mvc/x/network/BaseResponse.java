@@ -10,11 +10,13 @@ import com.common.mvc.x.network.nettty.NettyClientHandler;
 
 import java.lang.ref.WeakReference;
 
+import io.reactivex.functions.Consumer;
+
 /**
  * @author xiao
  * @date 2018/5/24
  */
-public abstract class BaseResponse<T> implements NetworkCallback {
+public abstract class BaseResponse<T> implements NetworkCallback, Consumer {
 
     private Context mContext;
 

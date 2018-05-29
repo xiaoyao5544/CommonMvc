@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
  * @author xiao
  * @date 2018/5/24
  */
-public class NetWorkUtils {
+public class NetWorkUtil {
 
     /**
      * 检查是否有网络
@@ -43,6 +43,11 @@ public class NetWorkUtils {
         return false;
     }
 
+    /**
+     * 获取本机状态信息
+     * @param context
+     * @return
+     */
     private static NetworkInfo getNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

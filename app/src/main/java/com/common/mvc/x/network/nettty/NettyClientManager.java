@@ -75,7 +75,6 @@ public class NettyClientManager {
             //发起异步连接操作
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
             channel = channelFuture.channel();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers;
  * 默认的线程切换
  */
 
-class DefaultScheduler implements ObservableTransformer {
+public class DefaultScheduler implements ObservableTransformer {
 
     @Override
     public ObservableSource apply(@NonNull Observable upstream) {
